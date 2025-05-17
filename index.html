@@ -47,8 +47,7 @@
     }
 
     #startBtn,
-    #restartBtn,
-    #pauseBtn {
+    #restartBtn {
       font-family: 'Press Start 2P', monospace;
       font-size: 14px;
       padding: 16px 20px;
@@ -86,12 +85,6 @@
       animation: pop 1.2s infinite ease-in-out;
     }
 
-    #pauseBtn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 30;
-    }
 
     #gameContainer {
       position: relative;
@@ -142,7 +135,6 @@
   <div id="gameContainer">
     <canvas id="gameCanvas" width="400" height="600"></canvas>
     <button id="restartBtn">🔁 PLAY AGAIN</button>
-    <button id="pauseBtn">⏸ PAUSE</button>
   </div>
 
   <!-- שליטה בטאץ' -->
