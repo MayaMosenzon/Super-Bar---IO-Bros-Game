@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Bar-io Bros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- פונט רטרו -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      touch-action: none;
+      font-family: 'Press Start 2P', monospace;
+      background: black;
+      color: white;
+    }
+
+    #startScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom right, rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                  url("images/start-bg.jpg") no-repeat center center;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      padding: 2vh 4vw;
+      text-align: center;
+    }
+
+    #startScreen h1 {
+      font-size: clamp(18px, 6vw, 28px);
+      color: #ffcc00;
+      background: #222;
+      padding: 14px 20px;
+      border: 4px solid #ffcc00;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #ffcc00;
+    }
+
+    #startBtn,
+    #restartBtn,
+    #pauseBtn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 14px;
+      padding: 16px 20px;
+      background: #ff4444;
+      color: #fff;
+      border: 4px solid #fff200;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 0 8px #fff200;
+      transition: transform 0.2s ease, background 0.2s;
+    }
+
+    #startBtn:hover,
+    #restartBtn:hover,
+    #pauseBtn:hover {
+      background: #ff2222;
+      transform: scale(1.05);
+    }
+
+    #restartBtn {
+      display: none;
+      position: absolute;
+      top: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+    }
+
+    @keyframes pop {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+    }
+
+    #restartBtn.show-pop {
+      animation: pop 1.2s infinite ease-in-out;
+    }
+
+    #pauseBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 30;
+    }
+
+    #gameContainer {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+      touch-action: none;
+      box-sizing: border-box;
+      padding-bottom: env(safe-area-inset-bottom, 40px);
+    }
+
+    #touchControls {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    #leftTouch, #rightTouch {
+      width: 50%;
+      height: 100%;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- מסך פתיחה -->
+  <div id="startScreen">
+    <h1>Super Bar-io Bros</h1>
+    <button id="startBtn">🎮 START GAME</button>
+  </div>
+
+  <!-- אזור המשחק -->
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="400" height="600"></canvas>
+    <button id="restartBtn">🔁 PLAY AGAIN</button>
+    <button id="pauseBtn">⏸ PAUSE</button>
+  </div>
+
+  <!-- שליטה בטאץ' -->
+  <div id="touchControls">
+    <div id="leftTouch"></div>
+    <div id="rightTouch"></div>
+  </div>
+
+  <!-- קובץ הג'אווהסקריפט שלך -->
+  <script src="game.js" defer></script>
+</body>
+</html>
