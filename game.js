@@ -3,7 +3,6 @@ const ctx = canvas.getContext("2d");
 const restartBtn = document.getElementById("restartBtn");
 const startScreen = document.getElementById("startScreen");
 const startBtn = document.getElementById("startBtn");
-const pauseBtn = document.getElementById("pauseBtn");
 
 const santaImg = new Image();
 santaImg.src = "images/santa.png";
@@ -30,7 +29,6 @@ let bombs = [];
 let score = 0;
 let difficultyLevel = 1;
 let gameOver = false;
-let isPaused = false;
 let touchLeft = false;
 let touchRight = false;
 
@@ -152,10 +150,12 @@ function draw() {
 
 // לולאת המשחק
 function gameLoop() {
-  if (!isPaused && !gameOver) {
+  if (!gameOver) {
     draw();
     requestAnimationFrame(gameLoop);
   }
+}
+
 }
 
 // איפוס המשחק
@@ -185,13 +185,6 @@ function startGame() {
 startBtn.addEventListener("click", startGame);
 restartBtn.addEventListener("click", resetGame);
 
-// לחיצה על כפתור עצור
-pauseBtn.addEventListener("click", () => {
-  isPaused = !isPaused;
-  pauseBtn.textContent = isPaused ? "▶ RESUME" : "⏸ PAUSE";
-  if (!isPaused && !gameOver) {
-    requestAnimationFrame(gameLoop);
-  }
 });
 
 // בקבוקים ופצצות כל כמה שניות
